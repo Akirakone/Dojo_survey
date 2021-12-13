@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,redirect,session
 app = Flask(__name__)
-app.secret_key = "you will never know"
+app.secret_key = "Its a secret, Shh"
 
 @app.route("/")
 def welcome():
