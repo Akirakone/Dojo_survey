@@ -3,7 +3,7 @@ app = Flask(__name__)
 app.secret_key = "Its a secret, Shh"
 
 @app.route("/")
-def welcome():
+def index():
     return render_template("index.html")
 
 @app.route("/process",methods=["POST"])
@@ -11,12 +11,14 @@ def process():
     session["name"] = request.form["name"]
     session["location"] = request.form["location"]
     session["language"] = request.form["language"]
-  
+    session ["comments"]= request.form["comments"]
+
     return redirect("/results")
 
 @app.route("/results")
 def user_info():
-    return render_template("results.html",name=session["name"],location=session["location"],language=session["language"],comments=session["comments"])
+    return render_template( "results.html",name=session["name"],location=session["location"],
+    language=session["language"],comments=session["comments"])
 
-if __name__=="__main__":
-	app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
